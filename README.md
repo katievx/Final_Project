@@ -1,8 +1,8 @@
 # Final_Project
 Files:
-  cakes.csv: This is a csv file that holds the data with recipes of cakes
-  cookies.csv This is a csv file that holds the data with recipes of cookies
-  combine2.py: This is our final project program that will be able to be used be a user to sor
+  cakes.csv: This is a csv file that holds the data with recipes of cakes. 
+  cookies.csv: This is a csv file that holds the data with recipes of cookies. 
+  combine2.py: This is our final project program that will be able to be used be a user to sort
     and graph recipes from a recipe book dataframe.
 
 To run the program from the command line you should type the program name (combine2.py) followed by the csv files 
