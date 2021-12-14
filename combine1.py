@@ -3,6 +3,8 @@ import pandas as pd
 import matplotlib.pyplot as plt 
 
 def cookie():
+    """
+    """
     cookie_df = pd.read_csv("cookies.csv", sep = ",", encoding = "UTF-8")
     return cookie_df
 def cake():
