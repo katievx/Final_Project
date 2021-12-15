@@ -5,9 +5,9 @@ Files:
   combine2.py: This is our final project program that will be able to be used be a user to sort
     and graph recipes from a recipe book dataframe.
 
-To run the program from the command line you should type the program name (combine2.py) followed by the csv files 
+To run the program from the command line you should type python3 followed by the program name (combine2.py), then followed by the csv files 
   you want to import for the dataframe. In this case it would be cookies.csv and cakes.csv. So, in the command line 
-  the user should type combine.py cakes.csv cookies.csv. 
+  the user should type python3 combine.py cookies.csv cakes.csv. 
   
 To use the program, the user will then be prompted to input based on questions asked. User will be asked a variety of questions
   about what they want to sort recipe book by, and what data visualiziation they would like to see. 
