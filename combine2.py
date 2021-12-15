@@ -22,12 +22,12 @@ class Recipe:
             Creates a new dataframe
             Modifies the new dataframe by adding new column 
         """
-        for line in self.cookies_and_cakes_df:
-            if self.cookies_and_cakes_df["Serving Size"] == NaN:
-                print(f"Please replace {line} with a non-zero or non-empty value!")
-                break
-            else:
-                self.cookies_and_cakes_df["Calories per cookie or slice"] =  self.cookies_and_cakes_df["Calories"] / self.cookies_and_cakes_df["Serving Size"]
+    #    for line in self.cookies_and_cakes_df:
+    #        if self.cookies_and_cakes_df["Serving Size"] == NaN:
+     #           print(f"Please replace {line} with a non-zero or non-empty value!")
+      #          break
+       #     else:
+        self.cookies_and_cakes_df["Calories per cookie or slice"] =  self.cookies_and_cakes_df["Calories"] / self.cookies_and_cakes_df["Serving Size"]
         
     def sort(self, cookies_and_cakes_df):
         """Orders the dataframe by different categories, including:
@@ -38,11 +38,11 @@ class Recipe:
         servingsize_rank = cookies_and_cakes_df.sort_values(["Serving Size"])
         return (calorie_rank, baketime_rank, servingsize_rank)
         
-    def bars(self, cookies_and_cakes_df):
-        calories_bar = cookies_and_cakes_df.plot.bar(x = 'Recipe Name', y = 'Calories')
-        servingsize_bar = cookies_and_cakes_df.plot.bar(x = 'Recipe Name', y = 'Serving Size')
-        baketime_bar = cookies_and_cakes_df.plot.bar(x = 'Recipe Name', y = 'Bake Time (minutes)')
-        return (calories_bar, servingsize_bar, baketime_bar)
+    def bars(self):
+        self.calories_bar = self.cookies_and_cakes_df.plot.bar(x = 'Recipe Name', y = 'Calories')
+        servingsize_bar = self.cookies_and_cakes_df.plot.bar(x = 'Recipe Name', y = 'Serving Size')
+        baketime_bar = self.cookies_and_cakes_df.plot.bar(x = 'Recipe Name', y = 'Bake Time (minutes)')
+        return (self.calories_bar, servingsize_bar, baketime_bar)
 
     def hists(self, cookies_and_cakes_df):
         calories_g = cookies_and_cakes_df.hist("Calories")
@@ -50,14 +50,13 @@ class Recipe:
         baketime_g = cookies_and_cakes_df.hist("Bake Time (minutes)")
         return (calories_g, servingsize_g, baketime_g)
 
-    def user_input():
+    def user_input(self):
         print("You can also sort the database by certian columns (from lowest to highest) by choosing to see a list.")
         print("Or, view a graphical display of some columns by choosing see to a graph.")
         user_1 = input("Which option would you like: a list or graph?").lower()
         return user_1
 
-  
-def list_options(user_1, recipe):
+def list_options(recipe):
     calorie_rank, baketime_rank, servingsize_rank = recipe.sort()
   #  if user_1 == "list":
     while True:
@@ -74,14 +73,14 @@ def list_options(user_1, recipe):
         else:
             print("We don't have that option! Please input either 'calories', 'serving size', or 'bake time' ")  
 
-def bar_options(user_2, calories_bar, servingsize_bar, baketime_bar):
+def bar_options(recipe):
  #   if user_1 == "graph":
  #       user_2 = input("Do you want to see a histogram or bar graph?").lower()
     while True:
  #       if user_2 == "bar graph":
         user_3 = input("What would you like the bar graph listed by: calories, bake time, or serving size?").lower()
         if user_3 == "calories":
-            print(calories_bar)
+            print(recipe.calories_bar)
             break
         if user_3 == "bake time":
             print(baketime_bar)
@@ -91,9 +90,9 @@ def bar_options(user_2, calories_bar, servingsize_bar, baketime_bar):
             break
         else:
             print("We don't have that option! Please input either 'calories', 'serving size', or 'bake time' ")
-    return user_2
+ #   return user_2
                                     
-def hist_options(user_2, calories_g, servingsize_g, baketime_g):
+def hist_options(recipe):
     #    if user_2 == "histogram":
         user_3 = "What would you like a histogram for: calories, serving size, or bake time?".lower()
         if user_3 == "calories":
@@ -114,6 +113,7 @@ def user_choice(user_1):
                 bar_options()
             if user_2 == "histogram":
                 hist_options()
+        return user_2
                 
                     
     
@@ -121,14 +121,15 @@ def user_choice(user_1):
 def main(file1, file2):   
     recipes = Recipe(file1, file2)    
     recipes.cal_per_serving_size()
-    
-    cal_df = recipes.cal_per_serving_size()
-    hist_options(cal_df)
-    bar_options(cal_df)
-    list_options(cal_df)
+
     user_c = recipes.user_input()
     user_choice(user_c)
     
+    #for displaying based on input
+    cal_df = recipes.cal_per_serving_size()
+    hist_options(cal_df)
+    bar_options(cal_df)
+    list_options(cal_df)    
     
 
 
